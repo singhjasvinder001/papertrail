@@ -61,6 +61,13 @@ S3_BUCKET=papertrail  TESSDATA_PATH=./assets/tesseract
 2. Connect the GitHub repo (or push via zcli) — `zerops.yaml` builds each service: static web export, Fastify API (health-checked on `/healthz`), worker with bundled Tesseract data.
 3. Managed service credentials flow automatically via `$db_connectionString`, `$cache_connectionString`, `$meili_defaultAdminKey`, `$storage_*`, and the public API URL via `$api_zeropsSubdomain`.
 
+## Live deployment
+
+- Frontend: <https://web-2d61.prg1.zerops.app>
+- API (health): <https://api-2d61-3000.prg1.zerops.app/healthz>
+- Demo login: `judge_demo` / `demopass123` — the **Product Docs** collection already contains 3 processed documents (PDF with OCR, Markdown, invoice text). Try the typo-ridden search `refun polcy` and the chat question "What is the refund policy?".
+- Stack: 7 services live on Zerops (`web`, `api`, `worker` runtime + `db`, `cache`, `meili`, `storage` managed).
+
 ## Sample documents
 
 `samples/` contains a 2-page PDF (page 2 = refund policy — demo the "What is the refund policy?" question), a Markdown getting-started guide, and an invoice text file.
