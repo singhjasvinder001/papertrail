@@ -1,0 +1,28 @@
+{
+  "name": "papertrail-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PaperTrail document processing pipeline — extraction, OCR, chunking, indexing",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "fetch:tessdata": "node scripts/fetch-tessdata.mjs",
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.0",
+    "ioredis": "^5.4.1",
+    "meilisearch": "^0.44.0",
+    "pdfjs-dist": "^4.7.76",
+    "pg": "^8.13.0",
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.2"
+  }
+}

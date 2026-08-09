@@ -1,0 +1,13 @@
+{
+  "name": "papertrail",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PaperTrail — document intelligence platform on Zerops (7 services)",
+  "scripts": {
+    "setup": "npm --prefix apps/api ci && npm --prefix apps/worker ci && npm --prefix apps/web ci",
+    "build": "npm --prefix apps/api run build && npm --prefix apps/worker run build && npm --prefix apps/web run build",
+    "dev:api": "npm --prefix apps/api run dev",
+    "dev:worker": "npm --prefix apps/worker run dev",
+    "dev:services": "npm run dev:api & npm run dev:worker"
+  }
+}

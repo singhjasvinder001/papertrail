@@ -1,0 +1,23 @@
+INVOICE #2026-0811
+PaperTrail Labs UG — Example invoice for the demo workspace
+============================================================
+
+Bill to: Zerops Challenge Judge
+Date: 2026-08-09
+Due date: 2026-09-08
+
+Item                              Qty      Unit price     Total
+--------------------------------------------------------------
+PaperTrail Pro annual plan         1        96.00 EUR      96.00 EUR
+Priority OCR processing            3         4.00 EUR      12.00 EUR
+Extra object storage (10 GB)       1        10.00 EUR      10.00 EUR
+--------------------------------------------------------------
+Subtotal                                                 118.00 EUR
+VAT (19%)                                                22.42 EUR
+Total                                                    140.42 EUR
+
+Payment terms: Payment is due within 30 days of the invoice date.
+All invoices are covered by the 30-day money-back guarantee.
+Late payments are subject to a 1.5% monthly interest charge.
+
+Contact: billing@papertrail.example

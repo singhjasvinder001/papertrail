@@ -1,0 +1,50 @@
+# PaperTrail — managed services import
+# Import this file once in the Zerops GUI (Import services) to create the whole
+# infrastructure: 4 managed services + 3 runtime services with public access.
+# Then connect GitHub (or use zcli) so zerops.yaml builds and deploys the code.
+
+project:
+  name: papertrail
+
+services:
+  # Frontend — static Nginx serving the Next.js export (public subdomain)
+  - hostname: web
+    type: static@1.0
+    enableSubdomainAccess: true
+    minContainers: 1
+    maxContainers: 1
+
+  # API — Fastify runtime (public subdomain, used by the frontend)
+  - hostname: api
+    type: nodejs@22
+    enableSubdomainAccess: true
+    minContainers: 1
+    maxContainers: 1
+
+  # Worker — document processing pipeline (private, no public access)
+  - hostname: worker
+    type: nodejs@22
+    minContainers: 1
+    maxContainers: 1
+
+  # PostgreSQL — users, collections, documents, jobs
+  - hostname: db
+    type: postgresql:single@16
+    minContainers: 1
+    maxContainers: 1
+
+  # Valkey — job queue + search cache
+  - hostname: cache
+    type: valkey@7.2
+    minContainers: 1
+    maxContainers: 1
+
+  # Meilisearch — full-text search index with typo tolerance
+  - hostname: meili
+    type: meilisearch@1.20
+    minContainers: 1
+    maxContainers: 1
+
+  # Object storage (MinIO, S3-compatible) — original files
+  - hostname: storage
+    type: object-storage

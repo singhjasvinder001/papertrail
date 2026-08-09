@@ -1,0 +1,80 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1074 >>
+stream
+BT
+/F1 12 Tf
+72 720 Td
+(PaperTrail Product Specification v1.0) Tj 0 -18 Td
+() Tj 0 -18 Td
+(Overview) Tj 0 -18 Td
+(PaperTrail is a document intelligence platform. Users upload PDFs, notes and) Tj 0 -18 Td
+(screenshots; the platform extracts text, builds a searchable index and answers) Tj 0 -18 Td
+(questions with citations back to the exact page of the source document.) Tj 0 -18 Td
+() Tj 0 -18 Td
+(Core architecture) Tj 0 -18 Td
+(The system is composed of seven services deployed on Zerops: a static frontend) Tj 0 -18 Td
+(\(Next.js on managed Nginx\), a Fastify API runtime, a Node worker that performs) Tj 0 -18 Td
+(OCR and text extraction, a PostgreSQL database, a Valkey job queue and cache, a) Tj 0 -18 Td
+(Meilisearch full-text index and an S3-compatible object store for originals.) Tj 0 -18 Td
+() Tj 0 -18 Td
+(The worker consumes jobs from the Valkey queue using a blocking BRPOP call.) Tj 0 -18 Td
+(Each document is chunked into overlapping fragments that never cross page) Tj 0 -18 Td
+(boundaries, so every search hit keeps an exact page citation.) Tj 0 -18 Td
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 6 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 923 >>
+stream
+BT
+/F1 12 Tf
+72 720 Td
+(Pricing and refunds) Tj 0 -18 Td
+() Tj 0 -18 Td
+(PaperTrail offers a free tier with 3 collections and 50 documents per month.) Tj 0 -18 Td
+(The Pro plan costs 9 euros per month and includes unlimited collections,) Tj 0 -18 Td
+(OCR for image documents and priority processing.) Tj 0 -18 Td
+() Tj 0 -18 Td
+(Refund policy) Tj 0 -18 Td
+(All paid plans are covered by a 30-day money-back guarantee from the date of) Tj 0 -18 Td
+(purchase. Refunds are processed within 5 business days of the request and are) Tj 0 -18 Td
+(returned to the original payment method. Annual plans are refunded pro-rata) Tj 0 -18 Td
+(for the unused portion after the first 30 days.) Tj 0 -18 Td
+() Tj 0 -18 Td
+(Data retention) Tj 0 -18 Td
+(Documents are stored in object storage with AES-256 encryption at rest. Users) Tj 0 -18 Td
+(may export or permanently delete their data at any time from the settings page.) Tj 0 -18 Td
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000001373 00000 n 
+0000001499 00000 n 
+0000002473 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2543
+%%EOF

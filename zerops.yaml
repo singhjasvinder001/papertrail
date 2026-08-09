@@ -1,0 +1,92 @@
+# PaperTrail — Zerops Challenge 2026
+# 7 services: 3 runtime (web, api, worker) + 4 managed (db, cache, meili, storage)
+# Managed services are created from zerops-import.yaml. This file wires the runtime services.
+
+zerops:
+  # ─── Frontend: Next.js static export served by Zerops' managed Nginx ───────────
+  - setup: web
+    build:
+      base: nodejs@22
+      buildCommands:
+        - cd apps/web
+        - npm ci
+        - npm run build
+      deployFiles:
+        - apps/web/out/~
+      cache: apps/web/node_modules
+      envVariables:
+        # Resolves to the API service's public subdomain (https://api-<project>.zerops.app)
+        NEXT_PUBLIC_API_URL: $api_zeropsSubdomain
+    run:
+      base: static
+
+  # ─── API: Fastify REST backend (auth, uploads, search, chat) ──────────────────
+  - setup: api
+    build:
+      base: nodejs@22
+      buildCommands:
+        - cd apps/api
+        - npm ci
+        - npm run build
+      deployFiles:
+        - apps/api/dist
+        - apps/api/package.json
+        - apps/api/node_modules
+      cache: apps/api/node_modules
+    run:
+      base: nodejs@22
+      ports:
+        - port: 3000
+          httpSupport: true
+      start: npm start
+      envVariables:
+        # Managed services are referenced over the private network via their
+        # auto-generated env variables (prefix: <service>_<variable>)
+        DB_CONNECTION: $db_connectionString
+        CACHE_URL: $cache_connectionString
+        MEILI_URL: http://meili:7700
+        MEILI_KEY: $meili_defaultAdminKey
+        S3_ENDPOINT: $storage_apiUrl
+        S3_ACCESS_KEY_ID: $storage_accessKeyId
+        S3_SECRET_ACCESS_KEY: $storage_secretAccessKey
+        S3_BUCKET: $storage_bucketName
+      healthCheck:
+        httpGet:
+          port: 3000
+          path: /healthz
+    deploy:
+      readinessCheck:
+        httpGet:
+          port: 3000
+          path: /healthz
+          failureTimeout: 60
+          retryPeriod: 5
+
+  # ─── Worker: document processing pipeline (OCR / text extraction / indexing) ──
+  - setup: worker
+    build:
+      base: nodejs@22
+      buildCommands:
+        - cd apps/worker
+        - npm ci
+        - node scripts/fetch-tessdata.mjs
+        - npm run build
+      deployFiles:
+        - apps/worker/dist
+        - apps/worker/package.json
+        - apps/worker/node_modules
+        - apps/worker/assets
+      cache: apps/worker/node_modules
+    run:
+      base: nodejs@22
+      start: npm start
+      envVariables:
+        DB_CONNECTION: $db_connectionString
+        CACHE_URL: $cache_connectionString
+        MEILI_URL: http://meili:7700
+        MEILI_KEY: $meili_defaultAdminKey
+        S3_ENDPOINT: $storage_apiUrl
+        S3_ACCESS_KEY_ID: $storage_accessKeyId
+        S3_SECRET_ACCESS_KEY: $storage_secretAccessKey
+        S3_BUCKET: $storage_bucketName
+        TESSDATA_PATH: ./assets/tesseract
