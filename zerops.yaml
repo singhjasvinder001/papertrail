@@ -10,6 +10,7 @@ zerops:
       buildCommands:
         - |
           cd apps/web
+          echo "API_URL_BUILD=[$NEXT_PUBLIC_API_URL]"
           npm ci
           npm run build
       deployFiles:
