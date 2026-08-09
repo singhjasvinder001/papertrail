@@ -9,7 +9,9 @@ import { registerDocumentRoutes } from './routes/documents.js';
 import { registerSearchRoutes } from './routes/search.js';
 
 async function main(): Promise<void> {
+  console.log('[api] booting — db connection', env.dbConnection.replace(/:[^:@/]+@/, ':***@'));
   await migrate();
+  console.log('[api] db + cache ready');
 
   const fastify = Fastify({
     logger: { level: process.env.LOG_LEVEL ?? 'info' },

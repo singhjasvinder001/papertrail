@@ -30,21 +30,16 @@ services:
   # PostgreSQL — users, collections, documents, jobs
   - hostname: db
     type: postgresql:single@16
-    minContainers: 1
-    maxContainers: 1
 
   # Valkey — job queue + search cache
   - hostname: cache
     type: valkey@7.2
-    minContainers: 1
-    maxContainers: 1
 
   # Meilisearch — full-text search index with typo tolerance
   - hostname: meili
     type: meilisearch@1.20
-    minContainers: 1
-    maxContainers: 1
 
   # Object storage (MinIO, S3-compatible) — original files
   - hostname: storage
     type: object-storage
+    objectStorageSize: 2
