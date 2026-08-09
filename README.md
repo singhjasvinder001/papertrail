@@ -1,3 +1,7 @@
+PaperTrail: upload documents → automatic OCR + extraction → search with typos tolerated → chat with page-cited answers.
+Built for the Zerops Challenge on 7 interconnected services (web, api, worker + db, cache, meili, storage).
+Live demo: web-2d61.prg1.zerops.app — login judge_demo / demopass123
+
 # PaperTrail — Document Intelligence Platform
 
 **Zerops Challenge 2026 entry.** Upload documents (PDF, Markdown, text, images) → automatic OCR & text extraction → full-text search with typo tolerance → natural-language Q&A with page-level citations.
