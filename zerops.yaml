@@ -8,9 +8,10 @@ zerops:
     build:
       base: nodejs@22
       buildCommands:
-        - cd apps/web
-        - npm ci
-        - npm run build
+        - |
+          cd apps/web
+          npm ci
+          npm run build
       deployFiles:
         - apps/web/out/~
       cache: apps/web/node_modules
@@ -25,10 +26,12 @@ zerops:
     build:
       base: nodejs@22
       buildCommands:
-        - cd apps/api
-        - npm ci
-        - npm run build
-        - mkdir -p deploy && cp -r dist package.json node_modules deploy/
+        - |
+          cd apps/api
+          npm ci
+          npm run build
+          mkdir -p deploy
+          cp -r dist package.json node_modules deploy/
       deployFiles:
         - apps/api/deploy/~
       cache: apps/api/node_modules
@@ -66,11 +69,13 @@ zerops:
     build:
       base: nodejs@22
       buildCommands:
-        - cd apps/worker
-        - npm ci
-        - node scripts/fetch-tessdata.mjs
-        - npm run build
-        - mkdir -p deploy && cp -r dist package.json node_modules assets deploy/
+        - |
+          cd apps/worker
+          npm ci
+          node scripts/fetch-tessdata.mjs
+          npm run build
+          mkdir -p deploy
+          cp -r dist package.json node_modules assets deploy/
       deployFiles:
         - apps/worker/deploy/~
       cache: apps/worker/node_modules
