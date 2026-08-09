@@ -68,3 +68,14 @@ S3_BUCKET=papertrail  TESSDATA_PATH=./assets/tesseract
 ## AI disclosure (rule 12)
 
 This project was developed with the assistance of AI coding tools. All logic, extraction, chunking, retrieval, and answer generation code was reviewed and validated by a human. The in-app chat uses extractive retrieval by default (no external LLM); the optional `OPENAI_API_KEY` mode is clearly labeled in the UI and disclosed here.
+
+/////////////////////////// 
+Option A — instant demo: Log in with the account that already has processed docs:
+- username: judge_demo / password: demopass123
+- Open Product docs → 8 ready documents → search refun polcy (typos!) → chat "What is the refund policy?"
+
+
+Option B — full flow from scratch:
+1. Register → create a collection → upload the 3 files in ~/papertrail/samples/ (PDF, .md, .txt)
+2. Watch each row tick queued → processing → ready
+3. Search + chat as above
